@@ -2,7 +2,7 @@
 
 Visualise connections between D&D players.
 
-You can contribute data to data/connections.csv. This is a comma-separated spreadsheet with one line per player, including the following columns:
+You can contribute data to [data/connections.csv](data/connections.csv). This is a comma-separated spreadsheet with one line per player, including the following columns:
 
 -  Player: Name of Player.
 -  Show: Name of Show. 
