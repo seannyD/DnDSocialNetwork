@@ -9,7 +9,7 @@ library(igraph)
 if (!require("ForceAtlas2")) devtools::install_github("analyxcompany/ForceAtlas2")
 library("ForceAtlas2")
 
-estimateStartingCoordinates = TRUE;
+estimateStartingCoordinates = TRUE
 
 
 try(setwd("/Library/WebServer/Documents/DNDSocialNetwork/processing/"))
