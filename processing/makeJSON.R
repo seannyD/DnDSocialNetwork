@@ -21,9 +21,14 @@ d = d[d$Player!="",]
 d = d[!duplicated(d[,c("Player","Show","Role")]),]
 # TODO: fill in links
 
-
-#d = d[1:30,]
-
+# Check for typos:
+nameDist = adist(unique(d$Player),unique(d$Player))
+closeNames = which(nameDist<3 & nameDist>0,arr.ind = T)
+closeNames = cbind(unique(d$Player)[closeNames[,1]],unique(d$Player)[closeNames[,2]])
+if(nrow(closeNames)>0){
+  warning("Names may be close duplicates:")
+  print(closeNames)
+}
 
 # Standard games
 sGames = d[d$Oneshot!="Yes",]
@@ -62,13 +67,6 @@ links$role = as.character(factor(links$role,
 
 showLinks = tapply(d$Link,d$Show,head,n=1)
 
-nodes$link = ""
-nodes[nodes$type=="g",]$link = showLinks[nodes[nodes$type=="g",]$id]
-
-# Node size
-#freq = table(d$Player)
-#links$size = freq[links$from]
-
 allPlayers = unique(d$Player)
 allGroups = unique(d[d$Oneshot!="Yes",]$Show)
 
@@ -77,6 +75,8 @@ nodes = data.frame(
   type=c(rep("p",length(allPlayers)),rep("g",length(allGroups))),
   stringsAsFactors = F)
 nodes$label = nodes$id
+nodes$link = ""
+nodes[nodes$type=="g",]$link = showLinks[nodes[nodes$type=="g",]$id]
 
 nodes[nodes$id %in% d[d$Role=="DM",]$Player,]$type="d"
 

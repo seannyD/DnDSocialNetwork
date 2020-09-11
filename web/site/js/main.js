@@ -12,11 +12,18 @@ var network_edges;
 
 var infoTitle,infoContent,linkContent;
 
+var defaultTitle = '<h2>D&D Social Network</h2>';
+var defaultMessage = 'A network of D&D groups. Click on a link or a die to see more information. You can add data to this network <a href="https://github.com/seannyD/DnDSocialNetwork">via github</a>.';
+
 window.onload = function(){
 
 	infoTitle = $("#infoTitle");
 	infoContent = $("#infoContent");
 	linkContent = $("#linkContent");
+	
+	infoTitle.html(defaultTitle);
+	infoContent.html(defaultMessage);
+	
 
 	var json = $.getJSON("DNDNetwork.json")
 	  .done(function(data){
@@ -181,6 +188,9 @@ networkClicked = function(properties) {
 		}
 	} else if(properties.edges.length==1){
 		makeEdgeContent(properties.edges[0])
+	} else {
+		infoTitle.html(defaultTitle);
+		infoContent.html(defaultMessage);
 	}
 	
 }
