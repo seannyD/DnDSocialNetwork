@@ -14,11 +14,25 @@ estimateStartingCoordinates = TRUE
 
 try(setwd("/Library/WebServer/Documents/DNDSocialNetwork/processing/"))
 
-d = read.csv("../data/connections.csv",stringsAsFactors = F,encoding = "UTF-8",fileEncoding = "UTF-8")
+# Data used to be a single csv, but is now
+# split into one for each show
+#d = read.csv("../data/connections.csv",stringsAsFactors = F,encoding = "UTF-8",fileEncoding = "UTF-8")
+
+# Load data from separate csvs:
+
+data = list()
+
+for(csvFile in list.files("../data/",pattern = "*.csv")){
+  data[[length(data)+1]] = read.csv(paste0("../data/",csvFile),stringsAsFactors = F,encoding = "UTF-8",fileEncoding = "UTF-8")
+}
+
+d <- do.call("rbind", data)
 
 d = d[!is.na(d$Player),]
 d = d[d$Player!="",]
 d = d[!duplicated(d[,c("Player","Show","Role")]),]
+d$Oneshot[is.na(d$Oneshot)] = "No"
+
 # TODO: fill in links
 
 # Check for typos:
