@@ -8,7 +8,7 @@ You can contribute data to the "data" folder. Add a comma-separated spreadsheet 
 -  Show: Name of Show. 
 -  Role: One of 'Player', 'DM' or 'Guest'.
 -  Oneshot: 'Yes' if this is a one-shot game, otherwise it assumes it's a regular show.
--  Link: url to video.
+-  Link: url to video. The aim is to provide one example per group (e.g. the first game), or one link to a game where a guest plays, not to document every game.
 
 You can also edit existing files to add information or new players/guests.
 
