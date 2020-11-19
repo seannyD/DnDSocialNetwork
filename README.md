@@ -10,6 +10,8 @@ You can contribute data to the "data" folder. Add a comma-separated spreadsheet 
 -  Oneshot: 'Yes' if this is a one-shot game, otherwise it assumes it's a regular show.
 -  Link: url to video.
 
+You can also edit existing files to add information or new players/guests.
+
 A regular group can be coded like this, with one player per row:
 
 |Player|Show|Role|Oneshot|Link|
