@@ -1,8 +1,21 @@
+/* 
 var colourScheme = {
 	p: {background:"#a6cee3", border:"#1f78b4"}, //player
 	g: {background:"#b2df8a", border:"#33a02c", highlight: "#9ceb57"},  //group
 	d: {background:"#fb9a99", border:"#e41a1c", highlight: "#ff4d4a"}
 	}
+ */
+	
+var colourScheme = {
+	1: {background:"#a6cee3", border:"#1f78b4"}, //player
+	2: {background:"#fb9a99", border:"#e41a1c", highlight: "#ff4d4a"}, // DM
+3: {background:"#CCEBC5", border:"#4DAF4A", highlight: "#4DAF4A"},
+ 4: {background:"#DECBE4", border:"#984EA3", highlight: "#984EA3"},
+ 5: {background:"#FED9A6", border:"#FF7F00", highlight: "#FF7F00"},
+ 6: {background:"#FFFFCC", border:"#FFFF33", highlight: "#FFFF33"},
+ 7: {background:"#E5D8BD", border:"#A65628", highlight: "#A65628"},
+ 8: {background:"#FDDAEC", border:"#F781BF", highlight: "#F781BF"}
+};
 
 const HexAngle = (Math.PI * 2) / 6;
 
@@ -113,7 +126,7 @@ initialiseNetwork = function(data){
 		  labelSplit: labelSplit,
 		  labelWidths: labelWidths,
 		  labelYs: labelYs,
-		  color : colourScheme[nx.type],
+		  color : colourScheme[nx.c],
 		  size: {'p':24,'d':24,'g':48}[nx.type]
 		})
 	}
@@ -140,6 +153,7 @@ initialiseNetwork = function(data){
 
 
 }
+
 
 nodeShapeRenderer = function({ ctx, x, y, state: { selected, hover }, style, label }) {
 

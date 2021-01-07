@@ -8,6 +8,7 @@ library(dplyr)
 library(igraph)
 if (!require("ForceAtlas2")) devtools::install_github("analyxcompany/ForceAtlas2")
 library("ForceAtlas2")
+library(RColorBrewer)
 
 estimateStartingCoordinates = TRUE
 
@@ -94,16 +95,44 @@ nodes[nodes$type=="g",]$link = showLinks[nodes[nodes$type=="g",]$id]
 
 nodes[nodes$id %in% d[d$Role=="DM",]$Player,]$type="d"
 
-# Colours (now moved to online assignment through type)
-#fillColour = c(player="#a6cee3",group= "#b2df8a")
-#borderColour = c(player="#1f78b4",group= "#33a02c")
-#nodes$color = sapply(nodes$type, function(X){
-#  # To get nested objects in the JSON, I have to do this apparently
-#  list(tibble(
-#    background=(fillColour[X]),
-#    border = (borderColour[X])))
-#})
+#########
+# Colour groups for regular games
+# 1 = (default coloured) player
+# 2 = dm
+# 3 - 10 = regular groups
+regularGames = nodes[nodes$type=='g',]$id
+backgroundColours = color
 
+pal = 3:(min(c(6,length(regularGames))))
+regularGamesColours = rep(pal,length.out=length(regularGames))
+names(regularGamesColours) = regularGames
+
+# Default players who don't belong to one regular group
+nodes$c = 1
+# DMs are all one colour
+nodes[nodes$type=='d',]$c = 2
+# Colour each group node
+nodes[nodes$type=='g',]$c = regularGamesColours[nodes[nodes$type=='g',]$id]
+
+numShowsPerPerson = tapply(links[links$role=='p',]$to,links[links$role=='p',]$from,length)
+regularPlayersWithJustOneGroup = names(numShowsPerPerson[numShowsPerPerson==1])
+rpwjog_group = links[links$role=='p' & links$from %in% regularPlayersWithJustOneGroup,]$to
+playersGroupColour = regularGamesColours[rpwjog_group]
+names(playersGroupColour) = links[links$role=='p' & links$from %in% regularPlayersWithJustOneGroup,]$from
+
+nodes[nodes$id %in% regularPlayersWithJustOneGroup,]$c = 
+  playersGroupColour[nodes[nodes$id %in% regularPlayersWithJustOneGroup,]$id]
+
+# Create colour definitions for web part
+cat(paste0(
+  3:8,': {background:"',brewer.pal(9,"Pastel1")[3:8],
+  '", border:"',brewer.pal(9,"Set1")[3:8],
+  '", highlight: "',brewer.pal(9,"Set1")[3:8],
+  '"},\n'
+))
+
+
+#############
 # Initial positions
 set.seed(23879)
 lx = links[,c("from","to")]
