@@ -103,7 +103,7 @@ nodes[nodes$id %in% d[d$Role=="DM",]$Player,]$type="d"
 regularGames = nodes[nodes$type=='g',]$id
 backgroundColours = color
 
-pal = 3:(min(c(6,length(regularGames))))
+pal = 3:(min(c(9,length(regularGames))))
 regularGamesColours = rep(pal,length.out=length(regularGames))
 names(regularGamesColours) = regularGames
 
@@ -125,9 +125,9 @@ nodes[nodes$id %in% regularPlayersWithJustOneGroup,]$c =
 
 # Create colour definitions for web part
 cat(paste0(
-  3:8,': {background:"',brewer.pal(9,"Pastel1")[3:8],
-  '", border:"',brewer.pal(9,"Set1")[3:8],
-  '", highlight: "',brewer.pal(9,"Set1")[3:8],
+  3:9,': {background:"',brewer.pal(9,"Pastel1")[2:8],
+  '", border:"',brewer.pal(9,"Set1")[2:8],
+  '", highlight: "',brewer.pal(9,"Set1")[2:8],
   '"},\n'
 ))
 

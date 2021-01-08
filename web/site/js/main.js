@@ -7,14 +7,15 @@ var colourScheme = {
  */
 	
 var colourScheme = {
-	1: {background:"#a6cee3", border:"#1f78b4"}, //player
+	1: {background:"#DDDDDD", border:"#CCCCCC"}, //player
 	2: {background:"#fb9a99", border:"#e41a1c", highlight: "#ff4d4a"}, // DM
-3: {background:"#CCEBC5", border:"#4DAF4A", highlight: "#4DAF4A"},
- 4: {background:"#DECBE4", border:"#984EA3", highlight: "#984EA3"},
- 5: {background:"#FED9A6", border:"#FF7F00", highlight: "#FF7F00"},
- 6: {background:"#FFFFCC", border:"#FFFF33", highlight: "#FFFF33"},
- 7: {background:"#E5D8BD", border:"#A65628", highlight: "#A65628"},
- 8: {background:"#FDDAEC", border:"#F781BF", highlight: "#F781BF"}
+3: {background:"#B3CDE3", border:"#377EB8", highlight: "#377EB8"},
+ 4: {background:"#CCEBC5", border:"#4DAF4A", highlight: "#4DAF4A"},
+ 5: {background:"#DECBE4", border:"#984EA3", highlight: "#984EA3"},
+ 6: {background:"#FED9A6", border:"#FF7F00", highlight: "#FF7F00"},
+ 7: {background:"#FFFFCC", border:"#FFFF33", highlight: "#FFFF33"},
+ 8: {background:"#E5D8BD", border:"#A65628", highlight: "#A65628"},
+ 9: {background:"#FDDAEC", border:"#F781BF", highlight: "#F781BF"}
 };
 
 const HexAngle = (Math.PI * 2) / 6;
