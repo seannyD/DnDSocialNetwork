@@ -39,7 +39,7 @@ window.onload = function(){
 	infoContent.html(defaultMessage);
 	
 
-	var json = $.getJSON("DNDNetwork.json")
+	var json = $.getJSON("DnDNetwork.json")
 	  .done(function(data){
 		var data = {
 		  nodes: data.nodes,
